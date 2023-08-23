@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newapp/widgets/input_image.dart';
 import 'package:newapp/providers/user_places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,9 +20,9 @@ class _NewItemsState extends ConsumerState<NewItems> {
     super.dispose();
   }
 
-  void savePlace(){
+  void savePlace() {
     final enteredtitle = _titleController.text;
-    if(enteredtitle.isEmpty){
+    if (enteredtitle.isEmpty) {
       return;
     }
     ref.read(userPlaceProvider.notifier).addPlaces(enteredtitle);
@@ -45,6 +46,10 @@ class _NewItemsState extends ConsumerState<NewItems> {
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              const InputImage(),
               const SizedBox(
                 height: 12,
               ),
