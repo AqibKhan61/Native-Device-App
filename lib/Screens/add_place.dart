@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:newapp/widgets/input_image.dart';
 import 'package:newapp/providers/user_places.dart';
+import 'package:newapp/widgets/location_input.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NewItems extends ConsumerStatefulWidget {
@@ -56,6 +57,10 @@ class _NewItemsState extends ConsumerState<NewItems> {
               InputImage(onpickImage: (image) {
                 selectedImagee = image;
               }),
+              const SizedBox(
+                height: 15,
+              ),
+              const LocationInput(),
               const SizedBox(
                 height: 12,
               ),
