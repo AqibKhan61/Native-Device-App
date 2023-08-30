@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:newapp/widgets/input_image.dart';
 import 'package:newapp/providers/user_places.dart';
@@ -13,6 +14,7 @@ class NewItems extends ConsumerStatefulWidget {
 
 class _NewItemsState extends ConsumerState<NewItems> {
   final _titleController = TextEditingController();
+  File? selectedImagee;
 
   @override
   void dispose() {
@@ -22,10 +24,12 @@ class _NewItemsState extends ConsumerState<NewItems> {
 
   void savePlace() {
     final enteredtitle = _titleController.text;
-    if (enteredtitle.isEmpty) {
+    if (enteredtitle.isEmpty || selectedImagee == null) {
       return;
     }
-    ref.read(userPlaceProvider.notifier).addPlaces(enteredtitle);
+    ref
+        .read(userPlaceProvider.notifier)
+        .addPlaces(enteredtitle, selectedImagee!);
     Navigator.of(context).pop();
   }
 
@@ -49,7 +53,9 @@ class _NewItemsState extends ConsumerState<NewItems> {
               const SizedBox(
                 height: 15,
               ),
-              const InputImage(),
+              InputImage(onpickImage: (image) {
+                selectedImagee = image;
+              }),
               const SizedBox(
                 height: 12,
               ),
